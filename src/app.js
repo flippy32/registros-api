@@ -19,16 +19,16 @@ createRoles();
 app.set("pkg", pkg);
 app.set("port", process.env.PORT || 4000);
 app.set("json spaces", 4);
-/*
+
 // Middlewares
 const corsOptions = {
-  // origin: "http://localhost:3000",
+  origin: "http://localhost:4000",
 };
 app.use(cors(corsOptions));
-app.use(helmet());*/
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // Welcome Routes
 app.get("/", (req, res) => {

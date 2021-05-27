@@ -78,7 +78,7 @@ try{
     });
     //almacenar el nuevo registro
     const datoSaved = await newDato.save();
-
+    console.log(datoSaved);
     res.status(201).json(datoSaved);
 }catch (error){
     console.log(error);
@@ -93,20 +93,28 @@ export const getDatos = async (req, res)=> {
 
 export const getDatoByID = async (req, res)=> {
     const {datoId} = req.params;
-
-    const dato = await Data.findByID();
+    console.log(datoId)
+    const dato = await Data.findById(datoId);
     res.status(200).json(dato);
 };
 
 export const updateDatoById =async (req, res)=> {
-    const {datoId} = req.params;
-    await Data.findByIdAndUpdate(datoId);
-    res.status(200).json();
+    const updateDato = await Data.findByIdAndUpdate(
+        req.params.datoId,
+        req.body,
+        {
+            new: true,
+        }
+    );
+    console.log(updateDato)
+    res.status(201).json(updateDato);
 };
 
 export const getDatoByNuc = async (req, res) => {
-    const {datoNuc} = req.query.search;
-    const datoEncontrado = await Data.findOne(datoNuc);
+    const datoNuc = req.params.nuc;
+    console.log(datoNuc)
+    const datoEncontrado = await Data.findOne({nuc: datoNuc});
+    console.log("datoEncontrado: ", datoEncontrado)
     if(!datoEncontrado){
         res.status(400).json({message: "no se pudo encontrar el criterio solicitado"});
     }else{

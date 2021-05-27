@@ -17,6 +17,7 @@ export const signup = async (req, res) => {
 
         //comprobar si se esta enviando el rol
         if (req.body.roles) {
+            console.log(req.body.roles)
             //buscar si en el rol introducido por el usuario, existe ese rol en DB
             const foundRoles = await Role.find({ name: { $in: roles } });
             //almacenar solo el id del rol o roles asignado

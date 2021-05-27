@@ -10,13 +10,13 @@ export const createUser = async (req, res) => {
     const { username, email, password, roles } = req.body;
 
     const rolesFound = await Role.find({ name: { $in: roles } });
-
+    console.log("rolesFound:", rolesFound)
     // creating a new User
     const user = new User({
       username,
       email,
       password,
-      roles: rolesFound.map((role) => role._id),
+      role: rolesFound.map((role) => role._id),
     });
 
     // encrypting password
@@ -29,13 +29,13 @@ export const createUser = async (req, res) => {
       _id: savedUser._id,
       username: savedUser.username,
       email: savedUser.email,
-      roles: savedUser.roles,
+      role: savedUser.roles,
     });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getUsers = async (req, res) => {};
+/*export const getUsers = async (req, res) => {};
 
-export const getUser = async (req, res) => {};
+export const getUser = async (req, res) => {};*/

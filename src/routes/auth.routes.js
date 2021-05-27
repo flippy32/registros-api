@@ -6,7 +6,8 @@ const router = Router()
 
 router.post(
     '/signup', 
-    /*[authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkUserOrEmailDuplicate ,verifySignUp.checkRole],*/ authController.signup
+    [verifySignUp.checkUserOrEmailDuplicate ,verifySignUp.checkRole, authJwt.verifyToken, authJwt.isAdmin ],
+    authController.signup,
     );
     
 router.post('/signin',authController.signin);

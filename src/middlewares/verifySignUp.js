@@ -23,10 +23,10 @@ export const checkUserOrEmailDuplicate = async (req, res, next) => {
 //verificar que se asigne un rol correcto al crear un usuario
 export const checkRole = (req, res, next) => {
     if (req.body.roles) {
-        for (let i = 0; i < req.body.roles.lenght; i++) {
+        for (let i = 0; i < req.body.roles.length; i++) {
             if (!ROLES.includes(req.body.roles[i])) {
                 return res.status(400).json({
-                    message: 'Role ${req.body.roles[i]} no existe',
+                    message: 'Los roles ingresados no existen'
                 });
             }
         }

@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
 
         //Crear token
         const token = jwt.sign({ id: savedUser._id }, config.SECRET, {
-            expiresIn: 86400 //24 horas
+            expiresIn: 86400, //24 horas
         });
         console.log(newUser);
         return res.status(200).json({ token });
@@ -45,11 +45,11 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     try {
-        const userFound = await User.findOne({ email: req.body.emal }).populate("roles");
-
+        const userFound = await User.findOne({ email: req.body.email }).populate("roles");
+        console.log(userFound)
         if (!userFound) return res.status(400).json({ Message: "Usuario no encontrado" });
 
-        const matchPassword = await User.comparePassword(req.body.password, userFound.password);
+        const matchPassword = await User.compararPassword(req.body.password, userFound.password);
 
         if (!matchPassword)
             return res.status(401).json({

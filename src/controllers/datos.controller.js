@@ -76,6 +76,7 @@ try{
         swArte,
         swInfo
     });
+
     //almacenar el nuevo registro
     const datoSaved = await newDato.save();
 

@@ -8,10 +8,12 @@ import pkg from "../package.json";
 import datosRoutes from "./routes/datos.routes";
 import usersRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
+import filesRoutes from "./routes/files.routes";
 
 import { createRoles, createAdmin} from "./libs/initialSetup";
 
 const app = express();
+const path = require('path');
 createRoles();
 //createAdmin();
 
@@ -45,5 +47,7 @@ app.get("/", (req, res) => {
 app.use("/api/datos", datosRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/auth", authRoutes);
-
+app.use("/api/files", filesRoutes);
+  //carpeta para almacenar los archivos
+app.use('/uploads', express.static(path.resolve('uploads')));
 export default app;

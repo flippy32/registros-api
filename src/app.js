@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 app.use("/api/datos", datosRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/files", filesRoutes);
+app.use("/api/datos/files", filesRoutes);
   //carpeta para almacenar los archivos
 app.use('/uploads', express.static(path.resolve('uploads')));
 export default app;

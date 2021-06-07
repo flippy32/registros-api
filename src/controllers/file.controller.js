@@ -16,7 +16,8 @@ export async function getFiles(req, res){
 }
 
 export async function createFile(req, res, err){
-    const archivo = req.file
+    const archivo = req.body
+    console.log('requestFile', req.body)
     const newFile = {
         filePath: archivo.path
     }

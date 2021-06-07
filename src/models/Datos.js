@@ -48,10 +48,10 @@ const dataSchema = new Schema({
     dis: { type: String, required: false },
     equipo: { type: String, required: true },
     evidencia: { type: String, required: false },
-    fechaC: { type: Date, required: false },
-    fechaD: { type: Date, required: true },
-    fechaR: { type: Date, required: true },
-    fechaRecol: { type: Date, required: false },
+    fechaC: { type: String, required: false },
+    fechaD: { type: String, required: true },
+    fechaR: { type: String, required: true },
+    fechaRecol: { type: String, required: false },
     hora: { type: String, required: true },
     id_del: { type: String, required: false },
     lic: { type: String, required: false },
@@ -72,7 +72,7 @@ const dataSchema = new Schema({
     swInfo: { type: String, required: false },
     unidad: { type: String, required: true },
     zona: { type: String, required: true },
-    date: { type: Date, default: Date.now },
+    Date: { type: Date, default: Date.now },
 });
 
 

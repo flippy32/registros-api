@@ -5,12 +5,12 @@ import {authJwt, verifySignUp} from '../middlewares'
 const router = Router()
 
 router.post(
-    '/signup', 
+    '/register', 
     /*[authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkUserOrEmailDuplicate ,verifySignUp.checkRole],*/ authController.signup
     );
     
-router.post('/signin',authController.signin);
-
+router.post('/login',authController.signin);
+router.delete('/logout', authController.logout);
 
 
 

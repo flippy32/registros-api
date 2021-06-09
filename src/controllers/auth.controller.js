@@ -44,11 +44,11 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     try {
-        const userFound = await User.findOne({ email: req.body.emal }).populate("roles");
-
+        const userFound = await User.findOne({ email: req.body.email }).populate("roles");
+        console.log(userFound)
         if (!userFound) return res.status(400).json({ Message: "Usuario no encontrado" });
 
-        const matchPassword = await User.comparePassword(req.body.password, userFound.password);
+        const matchPassword = await User.compararPassword(req.body.password, userFound.password);
 
         if (!matchPassword)
             return res.status(401).json({
@@ -56,11 +56,16 @@ export const signin = async (req, res) => {
                 message: "Password Incorrecto"
             });
 
-        const token = jwt.sign({ id: userFound._id }, config.SECRET, {
-            expiresIn: 86400,
+        const token = jwt.sign({ id: userFound._id, username: userFound.username, role: userFound.role }, config.SECRET, {
+            expiresIn: '1h',
         });
         res.json({ token });
     } catch (error) {
         console.log(error);
     }
 };
+
+export const logout = async (req, res) => {
+    res.status(200).json({message: 'Cerrando Sesión...'});
+    
+}

@@ -6,7 +6,7 @@ const router = Router()
 
 router.post(
     '/register', 
-    /*[authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkUserOrEmailDuplicate ,verifySignUp.checkRole],*/ authController.signup
+    [authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkUserOrEmailDuplicate ,verifySignUp.checkRole],authController.signup
     );
     
 router.post('/login',authController.signin);

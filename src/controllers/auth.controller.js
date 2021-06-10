@@ -32,7 +32,7 @@ export const signup = async (req, res) => {
 
         //Crear token
         const token = jwt.sign({ id: savedUser._id }, config.SECRET, {
-            expiresIn: 86400 //24 horas
+            expiresIn: 3600 //1 horas
         });
         console.log(newUser);
         return res.status(200).json({ token });
@@ -60,6 +60,7 @@ export const signin = async (req, res) => {
             expiresIn: '1h',
         });
         res.json({ token });
+        console.log("token: "+token);
     } catch (error) {
         console.log(error);
     }
@@ -67,5 +68,5 @@ export const signin = async (req, res) => {
 
 export const logout = async (req, res) => {
     res.status(200).json({message: 'Cerrando Sesión...'});
-    
+    console.log("Cerrando Sesion...")
 }
